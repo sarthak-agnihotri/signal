@@ -30,14 +30,14 @@ app = FastAPI(
 
 # Add CORS middleware (allow your frontend URL)
 app.add_middleware(
+app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
         "http://127.0.0.1:3000",
         "https://signal-xnx9.onrender.com",
-        "https://signal-qqatyv08b-sarthak-agnihotris-projects.vercel.app",  # ← ADD THIS
-        # Add preview deployments if needed:
-        # "https://signal-qqatyv08b-sarthak-agnihotris-projects.vercel.app",
+        "https://signal-indol-xi.vercel.app",  # ← YOUR ACTUAL VERCEL URL
+        # Add any other Vercel preview URLs
     ],
     allow_credentials=True,
     allow_methods=["*"],
