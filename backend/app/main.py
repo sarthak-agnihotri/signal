@@ -4,7 +4,7 @@ from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 import os
 
-# Import database - this now uses DATABASE_URL from environment
+# Import database
 from app.database import Base, engine, SessionLocal
 
 from app.api.auth import router as auth_router
@@ -14,21 +14,21 @@ from app.api.messages import router as messages_router
 
 from app.websocket_manager import manager
 
-# Import all models so they're registered with SQLAlchemy
+# Import all models
 from app.models.user import User
 from app.models.contact import Contact
 from app.models.conversation import Conversation, ConversationMember
 from app.models.message import Message
 from app.models.reaction import MessageReaction, MessageRead
 
-# Create FastAPI app FIRST
+# Create FastAPI app
 app = FastAPI(
     title="CipherChat API",
     description="Privacy-focused real-time messaging platform",
     version="1.0.0"
 )
 
-# Add CORS middleware (allow your frontend URL)
+# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -36,46 +36,15 @@ app.add_middleware(
         "http://127.0.0.1:3000",
         "https://signal-xnx9.onrender.com",
         "https://signal-indol-xi.vercel.app",
+        "*",  # Temporarily allow all for testing
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Include routers
-app.include_router(auth_router)
-app.include_router(contacts_router)
-app.include_router(conversations_router)
-app.include_router(messages_router)
-
 # ============================================
-# CREATE TABLES ON STARTUP (with logging)
-# ============================================
-@app.on_event("startup")
-def init_db():
-    print("🔧 Creating database tables...")
-    print(f"📊 Using database: {os.getenv('DATABASE_URL', 'SQLite (local)')[:50]}...")
-    Base.metadata.create_all(bind=engine)
-    print("✅ Database tables ready")
-
-# ============================================
-# ROOT ENDPOINTS
-# ============================================
-@app.get("/")
-def root():
-    return {
-        "message": "CipherChat API is running",
-        "status": "ok"
-    }
-
-@app.get("/health")
-def health():
-    return {
-        "status": "healthy"
-    }
-
-# ============================================
-# WEBSOCKET ENDPOINT
+# WEBSOCKET ENDPOINT - MUST COME BEFORE ROUTERS!
 # ============================================
 @app.websocket("/ws/{conversation_id}")
 async def websocket_endpoint(
@@ -118,22 +87,13 @@ async def websocket_endpoint(
                     })
                     continue
 
-                # =========================
                 # SEND MESSAGE
-                # =========================
                 if event_type == "message":
-
                     content = data.get("content", "").strip()
-
                     if not content:
                         continue
 
-                    user = (
-                        db.query(User)
-                        .filter(User.id == user_id)
-                        .first()
-                    )
-
+                    user = db.query(User).filter(User.id == user_id).first()
                     if not user:
                         continue
 
@@ -164,43 +124,30 @@ async def websocket_endpoint(
                         }
                     )
 
-                # =========================
                 # DELIVERED
-                # =========================
                 elif event_type == "delivered":
-
                     message_id = data.get("message_id")
-
                     if not message_id:
                         continue
 
-                    message = (
-                        db.query(Message)
-                        .filter(
-                            Message.id == message_id,
-                            Message.conversation_id == conversation_id
-                        )
-                        .first()
-                    )
+                    message = db.query(Message).filter(
+                        Message.id == message_id,
+                        Message.conversation_id == conversation_id
+                    ).first()
 
                     if not message:
                         continue
 
-                    receipt = (
-                        db.query(MessageRead)
-                        .filter(
-                            MessageRead.message_id == message_id,
-                            MessageRead.user_id == user_id
-                        )
-                        .first()
-                    )
+                    receipt = db.query(MessageRead).filter(
+                        MessageRead.message_id == message_id,
+                        MessageRead.user_id == user_id
+                    ).first()
 
                     if not receipt:
                         receipt = MessageRead(
                             message_id=message_id,
                             user_id=user_id
                         )
-
                         db.add(receipt)
                         db.commit()
 
@@ -215,36 +162,24 @@ async def websocket_endpoint(
                         }
                     )
 
-                # =========================
                 # READ
-                # =========================
                 elif event_type == "read":
-
                     message_id = data.get("message_id")
-
                     if not message_id:
                         continue
 
-                    message = (
-                        db.query(Message)
-                        .filter(
-                            Message.id == message_id,
-                            Message.conversation_id == conversation_id
-                        )
-                        .first()
-                    )
+                    message = db.query(Message).filter(
+                        Message.id == message_id,
+                        Message.conversation_id == conversation_id
+                    ).first()
 
                     if not message:
                         continue
 
-                    receipt = (
-                        db.query(MessageRead)
-                        .filter(
-                            MessageRead.message_id == message_id,
-                            MessageRead.user_id == user_id
-                        )
-                        .first()
-                    )
+                    receipt = db.query(MessageRead).filter(
+                        MessageRead.message_id == message_id,
+                        MessageRead.user_id == user_id
+                    ).first()
 
                     if receipt:
                         receipt.read_at = datetime.now(timezone.utc)
@@ -268,20 +203,14 @@ async def websocket_endpoint(
                         }
                     )
 
-                # =========================
                 # TYPING
-                # =========================
                 elif event_type == "typing":
-
                     await manager.broadcast(
                         conversation_id,
                         {
                             "type": "typing",
                             "user_id": user_id,
-                            "is_typing": data.get(
-                                "is_typing",
-                                False
-                            )
+                            "is_typing": data.get("is_typing", False)
                         }
                     )
 
@@ -289,11 +218,41 @@ async def websocket_endpoint(
                 db.close()
 
     except WebSocketDisconnect:
-        manager.disconnect(
-            conversation_id,
-            websocket
-        )
+        manager.disconnect(conversation_id, websocket)
 
+# ============================================
+# INCLUDE ROUTERS - AFTER WEBSOCKET!
+# ============================================
+app.include_router(auth_router)
+app.include_router(contacts_router)
+app.include_router(conversations_router)
+app.include_router(messages_router)
+
+# ============================================
+# CREATE TABLES ON STARTUP
+# ============================================
+@app.on_event("startup")
+def init_db():
+    print("🔧 Creating database tables...")
+    print(f"📊 Using database: {os.getenv('DATABASE_URL', 'SQLite (local)')[:50]}...")
+    Base.metadata.create_all(bind=engine)
+    print("✅ Database tables ready")
+
+# ============================================
+# ROOT ENDPOINTS
+# ============================================
+@app.get("/")
+def root():
+    return {
+        "message": "CipherChat API is running",
+        "status": "ok"
+    }
+
+@app.get("/health")
+def health():
+    return {
+        "status": "healthy"
+    }
 
 @app.get("/websocket-test")
 def websocket_test():
