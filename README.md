@@ -1,3 +1,4 @@
+markdown
 # Signal — Real-Time Messaging Application
 
 > A full-stack real-time messaging application inspired by Signal, built to demonstrate modern web development concepts including authentication, one-to-one messaging, group conversations, online presence, and real-time communication.
@@ -87,6 +88,7 @@ The application is fully deployed and accessible online:
 Username: testuser7
 Password: securepassword123
 
+text
 
 > **Note:** You can also register your own account using the registration page.
 
@@ -238,9 +240,10 @@ Render	Backend hosting + PostgreSQL
 Vercel	Frontend hosting
 GitHub	Version control
 Cloudflare	SSL/CDN
----
 🧩 System Architecture
 The application is divided into multiple logical layers.
+
+text
 ┌───────────────────────────────────────────────┐
 │                  Frontend                     │
 │                                               │
@@ -263,8 +266,10 @@ The application is divided into multiple logical layers.
 │ Users | Conversations | Members | Messages   │
 │ Contacts | MessageReads | Reactions          │
 └───────────────────────────────────────────────┘
----
+This separation makes the application easier to maintain and extend.
+
 📂 Project Structure
+text
 signal/
 │
 ├── frontend/
@@ -303,11 +308,11 @@ signal/
 │
 ├── README.md
 └── .gitignore
----
 🔐 Authentication
 Authentication is responsible for identifying users and protecting application functionality.
 
 Registration Flow
+text
 User
  │
  ├── Register (username, password, display_name)
@@ -342,17 +347,18 @@ User
          ▼
       Chat App
 JWT Token Flow
+text
 1. User logs in → Backend validates credentials
 2. Backend generates JWT token with user_id
 3. Token sent to frontend
 4. Frontend stores token in localStorage
 5. Token included in Authorization header for subsequent requests
 6. Backend validates token on protected routes
----
 💬 Real-Time Messaging
 Real-time messaging is one of the main features of the application. Instead of requiring the user to continuously refresh the page, messages are delivered and reflected in the interface dynamically.
 
 Message Flow
+text
 User A
   │
   │ Send Message
@@ -373,7 +379,6 @@ Backend (WebSocket Manager)
           │
           ▼
    Chat Interface Updated
----
 WebSocket Events
 Event Type	Description
 message	Send a new message
@@ -401,16 +406,17 @@ Messages
 The frontend dynamically loads the selected conversation and displays its messages.
 
 Creating a Direct Conversation
+text
 1. Click "+ New Chat" button
 2. Enter username of recipient
 3. Click "Start Chat"
 4. Conversation is created instantly
 5. Start sending messages!
----
 👥 Group Conversations
 The application also supports group conversations. A group can contain multiple members.
 
 Group Message Flow
+text
                  ┌── User A
                  │
                  ├── User B
@@ -418,6 +424,7 @@ Group Message ───┼── User C
                  │
                  └── User D
 Creating a Group
+text
 1. Click "+ New Group" button
 2. Enter group name
 3. Enter member usernames (comma-separated)
@@ -433,11 +440,12 @@ Member roles
 Real-time messaging
 
 Member online status
----
+
 🟢 Online Presence
 The application keeps track of whether users are currently online.
 
 How It Works
+text
 1. User connects → WebSocket established
 2. User marked as online in database
 3. Online status broadcast to conversation members
