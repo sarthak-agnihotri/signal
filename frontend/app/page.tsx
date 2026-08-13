@@ -341,7 +341,7 @@ export default function Home() {
           </div>
 
           <h1 className="text-3xl font-semibold text-gray-900">
-            CipherChat
+            Signal
           </h1>
 
           <p className="mt-2 text-gray-500">
@@ -400,7 +400,7 @@ export default function Home() {
 
           <p className="mt-2 text-sm text-gray-500">
             {mode === "login"
-              ? "Sign in to continue to CipherChat."
+              ? "Sign in to continue to Signal."
               : "Create an account to start messaging."}
           </p>
 
@@ -553,7 +553,7 @@ export default function Home() {
 
               <p className="mt-1 text-xs leading-5 text-gray-500">
                 Your conversations are protected by
-                CipherChat's privacy-focused architecture.
+                Signal's privacy-focused architecture.
               </p>
 
             </div>
