@@ -34,9 +34,10 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "http://127.0.0.1:3000",
-        "https://signal-xnx9.onrender.com",  # Your backend
-        # Add your Vercel frontend URL when deployed
-        # "https://your-app.vercel.app",
+        "https://signal-xnx9.onrender.com",
+        "https://signal-qqatyv08b-sarthak-agnihotris-projects.vercel.app",  # ← ADD THIS
+        # Add preview deployments if needed:
+        # "https://signal-qqatyv08b-sarthak-agnihotris-projects.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
