@@ -683,7 +683,7 @@ const [creatingGroup, setCreatingGroup] =
           </div>
 
           <p className="text-gray-500">
-            Loading CipherChat...
+            Loading Signal...
           </p>
         </div>
       </main>
@@ -711,7 +711,7 @@ const [creatingGroup, setCreatingGroup] =
 
             <div>
               <h1 className="text-2xl font-semibold text-gray-900">
-                CipherChat
+                Signal
               </h1>
 
               <p className="text-xs text-gray-400 mt-1">
@@ -896,7 +896,7 @@ const [creatingGroup, setCreatingGroup] =
               </div>
 
               <h2 className="text-xl font-semibold">
-                Welcome to CipherChat
+                Welcome to Signal
               </h2>
 
               <p className="text-gray-400 mt-2">
