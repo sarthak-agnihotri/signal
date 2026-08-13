@@ -4,46 +4,49 @@
 
 ![Signal](https://img.shields.io/badge/Project-Signal-blue)
 ![Frontend](https://img.shields.io/badge/Frontend-Next.js-black)
-![Backend](https://img.shields.io/badge/Backend-API-green)
+![Backend](https://img.shields.io/badge/Backend-FastAPI-green)
 ![Real-Time](https://img.shields.io/badge/Communication-Real--Time-orange)
+![Database](https://img.shields.io/badge/Database-PostgreSQL-blue)
+![Deployed](https://img.shields.io/badge/Deployed-Render%20%26%20Vercel-success)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ---
 
 ## 📌 Table of Contents
 
-* [About the Project](#-about-the-project)
-* [Project Objectives](#-project-objectives)
-* [Features](#-features)
-* [Application Overview](#-application-overview)
-* [Technology Stack](#-technology-stack)
-* [System Architecture](#-system-architecture)
-* [Project Structure](#-project-structure)
-* [Core Functionality](#-core-functionality)
-* [Authentication](#-authentication)
-* [Real-Time Messaging](#-real-time-messaging)
-* [One-to-One Conversations](#-one-to-one-conversations)
-* [Group Conversations](#-group-conversations)
-* [Online Presence](#-online-presence)
-* [Frontend](#-frontend)
-* [Backend](#-backend)
-* [API Communication](#-api-communication)
-* [Installation and Setup](#-installation-and-setup)
-* [Environment Variables](#-environment-variables)
-* [Running the Application](#-running-the-application)
-* [Usage](#-usage)
-* [Screenshots](#-screenshots)
-* [Database](#-database)
-* [Security Considerations](#-security-considerations)
-* [Error Handling](#-error-handling)
-* [Future Improvements](#-future-improvements)
-* [Learning Outcomes](#-learning-outcomes)
-* [Challenges Solved](#-challenges-solved)
-* [Testing](#-testing)
-* [Deployment](#-deployment)
-* [Contributing](#-contributing)
-* [License](#-license)
-* [Author](#-author)
+- [About the Project](#-about-the-project)
+- [Live Demo](#-live-demo)
+- [Project Objectives](#-project-objectives)
+- [Features](#-features)
+- [Application Overview](#-application-overview)
+- [Technology Stack](#-technology-stack)
+- [System Architecture](#-system-architecture)
+- [Project Structure](#-project-structure)
+- [Core Functionality](#-core-functionality)
+- [Authentication](#-authentication)
+- [Real-Time Messaging](#-real-time-messaging)
+- [One-to-One Conversations](#-one-to-one-conversations)
+- [Group Conversations](#-group-conversations)
+- [Online Presence](#-online-presence)
+- [Frontend](#-frontend)
+- [Backend](#-backend)
+- [API Communication](#-api-communication)
+- [Installation and Setup](#-installation-and-setup)
+- [Environment Variables](#-environment-variables)
+- [Running the Application](#-running-the-application)
+- [Usage](#-usage)
+- [Screenshots](#-screenshots)
+- [Database](#-database)
+- [Security Considerations](#-security-considerations)
+- [Error Handling](#-error-handling)
+- [Real-World Challenges Solved](#-real-world-challenges-solved)
+- [Future Improvements](#-future-improvements)
+- [Learning Outcomes](#-learning-outcomes)
+- [Testing](#-testing)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Author](#-author)
 
 ---
 
@@ -55,19 +58,37 @@ The application allows users to communicate through individual conversations as 
 
 The project was developed as a practical full-stack application to demonstrate the implementation of:
 
-* User authentication
-* Real-time communication
-* One-to-one messaging
-* Group messaging
-* Conversation management
-* User presence
-* REST API communication
-* Modern frontend development
-* Backend API development
-* State management
-* Responsive UI design
+- User authentication with JWT
+- Real-time communication via WebSockets
+- One-to-one and group messaging
+- Conversation management
+- User presence (online/offline status)
+- REST API communication
+- Modern frontend development with Next.js
+- Backend API development with FastAPI
+- PostgreSQL database integration
+- Production deployment on Render and Vercel
 
-> **Note:** This project is a learning/portfolio implementation inspired by Signal's messaging experience. It is not the official Signal application and should not be considered a production implementation of Signal's end-to-end encryption protocol.
+> **Note:** This project is a learning/portfolio implementation inspired by Signal's messaging experience. It is not the official Signal application.
+
+---
+
+# 🌐 Live Demo
+
+The application is fully deployed and accessible online:
+
+| Service | URL | Status |
+|---------|-----|--------|
+| **Frontend** | [https://signal-indol-xi.vercel.app](https://signal-indol-xi.vercel.app) | ✅ Live |
+| **Backend API** | [https://signal-xnx9.onrender.com](https://signal-xnx9.onrender.com) | ✅ Live |
+| **API Documentation** | [https://signal-xnx9.onrender.com/docs](https://signal-xnx9.onrender.com/docs) | ✅ Live |
+
+### 🧪 Test Credentials
+Username: testuser7
+Password: securepassword123
+
+
+> **Note:** You can also register your own account using the registration page.
 
 ---
 
@@ -75,18 +96,18 @@ The project was developed as a practical full-stack application to demonstrate t
 
 The main objective of the project is to build a functional real-time messaging platform while applying concepts from full-stack software development.
 
-### Primary objectives
+### Primary Objectives
 
-1. Build a modern messaging interface.
-2. Implement user authentication.
-3. Allow users to communicate in real time.
-4. Support one-to-one conversations.
-5. Support group conversations.
-6. Display user online/offline status.
-7. Maintain conversation and message state.
-8. Connect a modern frontend with a backend API.
-9. Create a scalable project structure.
-10. Provide a clean and intuitive user experience.
+1. Build a modern messaging interface with Next.js
+2. Implement secure user authentication with JWT
+3. Allow users to communicate in real time via WebSockets
+4. Support one-to-one conversations
+5. Support group conversations with multiple members
+6. Display user online/offline status
+7. Maintain conversation and message state
+8. Connect a modern frontend with a REST API
+9. Create a scalable project structure
+10. Deploy to production on Render and Vercel
 
 ---
 
@@ -94,70 +115,68 @@ The main objective of the project is to build a functional real-time messaging p
 
 ## 👤 User Features
 
-* User registration
-* User login
-* User authentication
-* User profile information
-* Display name
-* User avatar
-* Online/offline status
-* User identification
+- User registration with OTP verification
+- User login with JWT authentication
+- User profile information
+- Display name support
+- User avatar support
+- Online/offline status tracking
+- Secure password hashing with bcrypt
 
 ## 💬 Messaging Features
 
-* Send messages
-* Receive messages
-* Real-time communication
-* Conversation history
-* Individual conversations
-* Group conversations
-* Message timestamps
-* Dynamic conversation updates
+- Send and receive messages in real time
+- Conversation history persistence
+- Individual (one-to-one) conversations
+- Group conversations with multiple members
+- Message timestamps
+- Dynamic conversation updates
+- Message delivery status
 
 ## 👥 Group Features
 
-* Create group conversations
-* Add members to groups
-* Display group name
-* Display group avatar
-* View group members
-* Group roles
-* Group messaging
+- Create group conversations
+- Add multiple members to groups
+- Group name support
+- Display group members
+- Group messaging
+- Role-based member management
 
 ## 🟢 Presence Features
 
-* Online status
-* Offline status
-* Real-time user presence
-* Conversation member status
+- Real-time online status
+- Offline status detection
+- Conversation member status display
+- Active member visibility
 
 ## 🎨 UI Features
 
-* Modern messaging interface
-* Conversation sidebar
-* Chat window
-* Message composer
-* User information display
-* Group information
-* Responsive layout
-* Clean navigation
-* Real-time UI updates
+- Modern messaging interface
+- Conversation sidebar with search
+- Chat window with message history
+- Message composer with enter key support
+- User information display
+- Group information display
+- Responsive layout
+- Clean navigation
+- Real-time UI updates
 
 ---
 
 # 🏗️ Application Overview
 
-The application follows a client-server architecture.
+The application follows a client-server architecture with real-time capabilities.
 
 ```text
                     ┌──────────────────────┐
                     │      User / Client   │
                     └──────────┬───────────┘
                                │
-                               │
+                               │ HTTPS / WSS
                                ▼
                     ┌──────────────────────┐
-                    │     Next.js Frontend │
+                    │   Next.js Frontend   │
+                    │   (Vercel)           │
                     │                      │
                     │  - Login/Register    │
                     │  - Conversations     │
@@ -166,11 +185,12 @@ The application follows a client-server architecture.
                     │  - User Presence     │
                     └──────────┬───────────┘
                                │
-                         HTTP / Real-Time
+                         HTTP REST / WebSocket
                                │
                                ▼
                     ┌──────────────────────┐
-                    │      Backend API     │
+                    │   FastAPI Backend    │
+                    │   (Render)           │
                     │                      │
                     │  - Authentication    │
                     │  - Users             │
@@ -178,75 +198,62 @@ The application follows a client-server architecture.
                     │  - Messages          │
                     │  - Groups            │
                     │  - Presence          │
+                    │  - WebSocket Manager │
                     └──────────┬───────────┘
                                │
                                ▼
                     ┌──────────────────────┐
-                    │       Database       │
+                    │   PostgreSQL         │
+                    │   (Render)           │
                     │                      │
                     │  Users               │
                     │  Conversations       │
-                    │  Members             │
-                    │  Messages             │
+                    │  ConversationMembers │
+                    │  Messages            │
+                    │  Contacts            │
+                    │  MessageReads        │
                     └──────────────────────┘
-```
-
+🛠️ Technology Stack
+Frontend
+Technology	Purpose
+Next.js 14	Frontend application framework
+React 18	Building UI components
+TypeScript	Type-safe development
+Tailwind CSS	Styling and responsive UI
+Fetch API	Backend API communication
+WebSocket API	Real-time messaging
+Backend
+Technology	Purpose
+FastAPI	Python backend framework
+SQLAlchemy	ORM for database operations
+PostgreSQL	Production database
+JWT (python-jose)	Authentication
+WebSockets	Real-time communication
+bcrypt	Password hashing
+psycopg2-binary	PostgreSQL adapter
+uvicorn[standard]	ASGI server with WebSocket support
+Deployment
+Technology	Purpose
+Render	Backend hosting + PostgreSQL
+Vercel	Frontend hosting
+GitHub	Version control
+Cloudflare	SSL/CDN
 ---
-
-# 🛠️ Technology Stack
-
-## Frontend
-
-| Technology          | Purpose                        |
-| ------------------- | ------------------------------ |
-| Next.js             | Frontend application framework |
-| React               | Building UI components         |
-| TypeScript          | Type-safe development          |
-| CSS / Tailwind CSS  | Styling and responsive UI      |
-| Fetch / HTTP Client | Backend API communication      |
-
-## Backend
-
-The backend provides the application's API and handles business logic such as:
-
-* Authentication
-* User management
-* Conversations
-* Messages
-* Groups
-* Members
-* Online presence
-
-## Database
-
-The backend uses a persistent database to store application data such as:
-
-* Users
-* Conversations
-* Conversation members
-* Messages
-* Groups
-* User relationships
-
----
-
-# 🧩 System Architecture
-
+🧩 System Architecture
 The application is divided into multiple logical layers.
-
-```text
 ┌───────────────────────────────────────────────┐
 │                  Frontend                     │
 │                                               │
 │  Pages → Components → State → API Requests   │
 └───────────────────────┬───────────────────────┘
                         │
-                        │ HTTP / Real-Time
+                        │ HTTP REST / WebSocket
                         ▼
 ┌───────────────────────────────────────────────┐
 │                   Backend                     │
 │                                               │
 │ Routes → Controllers → Services → Database   │
+│            WebSocket Manager                  │
 └───────────────────────┬───────────────────────┘
                         │
                         ▼
@@ -254,61 +261,71 @@ The application is divided into multiple logical layers.
 │                  Database                     │
 │                                               │
 │ Users | Conversations | Members | Messages   │
+│ Contacts | MessageReads | Reactions          │
 └───────────────────────────────────────────────┘
-```
-
-This separation makes the application easier to maintain and extend.
-
 ---
-
-# 📂 Project Structure
-
-A simplified structure of the project is:
-
-```text
+📂 Project Structure
 signal/
 │
 ├── frontend/
 │   ├── app/
-│   │   ├── page.tsx
-│   │   ├── layout.tsx
-│   │   └── ...
-│   │
-│   ├── components/
+│   │   ├── page.tsx              # Login/Register page
+│   │   ├── chat/
+│   │   │   └── page.tsx          # Main chat interface
+│   │   └── layout.tsx
 │   ├── public/
+│   ├── .env.local
 │   ├── package.json
+│   ├── next.config.ts
 │   ├── tsconfig.json
-│   └── ...
+│   └── tailwind.config.js
 │
 ├── backend/
-│   ├── ...
+│   ├── app/
+│   │   ├── main.py               # FastAPI application
+│   │   ├── database.py           # Database connection
+│   │   ├── websocket_manager.py  # WebSocket connection manager
+│   │   ├── models/
+│   │   │   ├── user.py
+│   │   │   ├── conversation.py
+│   │   │   ├── message.py
+│   │   │   ├── contact.py
+│   │   │   └── reaction.py
+│   │   ├── api/
+│   │   │   ├── auth.py
+│   │   │   ├── contacts.py
+│   │   │   ├── conversations.py
+│   │   │   └── messages.py
+│   │   └── services/
+│   │       └── auth_service.py
 │   ├── requirements.txt
-│   └── ...
+│   └── .env
 │
 ├── README.md
 └── .gitignore
-```
-
-> The exact structure may vary depending on the latest project files.
-
 ---
-
-# 🔐 Authentication
-
+🔐 Authentication
 Authentication is responsible for identifying users and protecting application functionality.
 
-The general authentication flow is:
-
-```text
+Registration Flow
 User
  │
- ├── Register
+ ├── Register (username, password, display_name)
  │       │
  │       ▼
  │   Backend
  │       │
  │       ▼
  │   User Created
+ │       │
+ │       ▼
+ │   OTP Generated (123456 for demo)
+ │       │
+ │       ▼
+ │   OTP Verified
+ │       │
+ │       ▼
+ │   JWT Token Generated
  │
  └── Login
          │
@@ -320,810 +337,762 @@ User
        Verified
          │
          ▼
-   Authentication
-      Successful
+   JWT Token Generated
          │
          ▼
       Chat App
-```
-
-After successful authentication, the frontend can access the user's conversations and messaging functionality.
-
+JWT Token Flow
+1. User logs in → Backend validates credentials
+2. Backend generates JWT token with user_id
+3. Token sent to frontend
+4. Frontend stores token in localStorage
+5. Token included in Authorization header for subsequent requests
+6. Backend validates token on protected routes
 ---
+💬 Real-Time Messaging
+Real-time messaging is one of the main features of the application. Instead of requiring the user to continuously refresh the page, messages are delivered and reflected in the interface dynamically.
 
-# 💬 Real-Time Messaging
-
-Real-time messaging is one of the main features of the application.
-
-Instead of requiring the user to continuously refresh the page, messages can be delivered and reflected in the interface dynamically.
-
-### Message flow
-
-```text
+Message Flow
 User A
   │
   │ Send Message
   ▼
-Frontend
+Frontend (WebSocket)
   │
   ▼
-Backend
+Backend (WebSocket Manager)
   │
   ├── Validate Request
   │
-  ├── Store Message
+  ├── Store Message in Database
   │
-  └── Broadcast / Deliver
+  └── Broadcast to Conversation
           │
           ▼
        User B
           │
           ▼
    Chat Interface Updated
-```
-
-This provides a messaging experience similar to modern chat applications.
-
 ---
-
-# 👤 One-to-One Conversations
-
+WebSocket Events
+Event Type	Description
+message	Send a new message
+delivered	Mark message as delivered
+read	Mark message as read
+typing	User typing indicator
+connect	Connect user to WebSocket
+👤 One-to-One Conversations
 Users can communicate privately through individual conversations.
 
-Each conversation contains information such as:
+Each conversation contains:
 
-* Conversation ID
-* Conversation type
-* Other participant
-* User information
-* Messages
-* Online status
-* Last conversation activity
+Conversation ID
+
+Conversation type (DIRECT)
+
+Other participant information
+
+Username and display name
+
+Online/offline status
+
+Messages
 
 The frontend dynamically loads the selected conversation and displays its messages.
 
+Creating a Direct Conversation
+1. Click "+ New Chat" button
+2. Enter username of recipient
+3. Click "Start Chat"
+4. Conversation is created instantly
+5. Start sending messages!
 ---
+👥 Group Conversations
+The application also supports group conversations. A group can contain multiple members.
 
-# 👥 Group Conversations
-
-The application also supports group conversations.
-
-A group can contain multiple members, with each member having information such as:
-
-```text
-Member
-├── User ID
-├── Username
-├── Display Name
-├── Avatar
-├── Role
-└── Online Status
-```
-
-Groups allow multiple users to communicate inside the same conversation.
-
-### Group message flow
-
-```text
+Group Message Flow
                  ┌── User A
                  │
                  ├── User B
 Group Message ───┼── User C
                  │
                  └── User D
-```
+Creating a Group
+1. Click "+ New Group" button
+2. Enter group name
+3. Enter member usernames (comma-separated)
+4. Click "Create Group"
+5. All members can now send messages
+Group Features
+Multiple members
 
+Group name
+
+Member roles
+
+Real-time messaging
+
+Member online status
 ---
-
-# 🟢 Online Presence
-
+🟢 Online Presence
 The application keeps track of whether users are currently online.
 
-This information can be used by the frontend to display:
-
-* Online
-* Offline
-* Active members
-* Member availability
-
-Example:
-
-```text
-John Doe
-🟢 Online
-```
-
-or
-
-```text
-John Doe
-⚪ Offline
-```
-
-Presence information improves the real-time messaging experience.
-
----
-
-# 🖥️ Frontend
-
+How It Works
+1. User connects → WebSocket established
+2. User marked as online in database
+3. Online status broadcast to conversation members
+4. Frontend displays status indicators
+5. User disconnects → WebSocket closed
+6. User marked as offline
+Status Indicators
+text
+🟢 Online  - User is currently active
+⚪ Offline - User is not currently active
+🖥️ Frontend
 The frontend is responsible for the complete user-facing experience.
 
-Important frontend responsibilities include:
-
-### Conversation Management
-
+Conversation Management
 The conversation panel allows users to:
 
-* View conversations
-* Select conversations
-* View conversation names
-* View user/group avatars
-* See online status
+View all conversations
 
-### Chat Interface
+Select conversations
 
+View conversation names
+
+View user/group avatars
+
+See online status
+
+Search conversations
+
+Chat Interface
 The chat area provides:
 
-* Message history
-* Message sender information
-* Message timestamps
-* Message input
-* Send functionality
-* Dynamic updates
+Message history
 
-### User Interface State
+Message sender information
 
-The frontend maintains state for information such as:
+Message timestamps
 
-* Current user
-* Selected conversation
-* Conversations
-* Messages
-* Members
-* Online status
-* Loading states
-* Error states
+Message delivery status
 
----
+Message input
 
-# ⚙️ Backend
+Send functionality
 
+Dynamic updates
+
+Typing indicators
+
+User Interface State
+The frontend maintains state for:
+
+Current user
+
+Selected conversation
+
+Conversations list
+
+Messages
+
+Members
+
+Online status
+
+Loading states
+
+Error states
+
+Direct Chat Modal
+text
++ New Chat Button → Modal → Enter Username → Start Chat
+Group Chat Modal
+text
++ New Group Button → Modal → Group Name + Members → Create Group
+⚙️ Backend
 The backend acts as the central service responsible for application logic.
 
-It handles:
+User Management
+Registration with OTP verification
 
-### User Management
+Login with JWT generation
 
-* User registration
-* Login
-* User lookup
-* User profile data
+User lookup by username
 
-### Conversation Management
+User profile data
 
-* Creating conversations
-* Fetching conversations
-* Finding conversation members
-* Loading conversation information
+Password hashing with bcrypt
 
-### Message Management
+Conversation Management
+Creating direct conversations
 
-* Sending messages
-* Storing messages
-* Retrieving messages
-* Delivering messages
+Creating group conversations
 
-### Group Management
+Fetching user conversations
 
-* Creating groups
-* Adding members
-* Managing group information
-* Handling group messages
+Finding conversation members
 
----
+Loading conversation information
 
-# 🔄 API Communication
+Message Management
+Sending messages via WebSocket
 
-The frontend communicates with the backend through HTTP API requests.
+Storing messages in database
 
-The local backend used during development is:
+Retrieving messages by conversation
 
-```text
-http://127.0.0.1:8001
-```
+Message delivery status
 
-The frontend uses this backend to perform operations such as:
+Message read receipts
 
-```text
-Frontend
-   │
-   ├── Authentication Requests
-   │
-   ├── Conversation Requests
-   │
-   ├── Message Requests
-   │
-   ├── Group Requests
-   │
-   └── User Requests
-             │
-             ▼
-        Backend API
-```
+Group Management
+Creating groups
 
-For production deployment, the API URL should be configured through environment variables instead of hard-coded development URLs.
+Adding members
 
----
+Managing group information
 
-# 🚀 Installation and Setup
+Handling group messages
 
-## Prerequisites
+Member role management
 
+WebSocket Manager
+python
+class ConnectionManager:
+    - active_connections: Dict[int, List[WebSocket]]
+    - connect(conversation_id, websocket)
+    - disconnect(conversation_id, websocket)
+    - broadcast(conversation_id, message)
+🔄 API Communication
+The frontend communicates with the backend through HTTP API requests and WebSocket connections.
+
+REST API Endpoints
+Method	Endpoint	Description
+POST	/auth/register	Register new user
+POST	/auth/login	Login user
+POST	/auth/verify-otp	Verify OTP
+GET	/auth/me	Get current user
+GET	/conversations	Get all conversations
+POST	/conversations/direct	Create direct conversation
+POST	/conversations/group	Create group conversation
+GET	/messages/{id}	Get messages by conversation
+GET	/contacts	Get contacts
+POST	/contacts	Add contact
+GET	/contacts/search/{username}	Search users
+WebSocket Endpoint
+Endpoint	Description
+wss://signal-xnx9.onrender.com/ws/{conversation_id}	WebSocket connection for real-time messaging
+🚀 Installation and Setup
+Prerequisites
 Before running the project, make sure the following are installed:
 
-* Node.js
-* npm
-* Git
-* Backend runtime required by the project
-* Database required by the backend
+Node.js (v18 or higher)
 
-Verify Node.js:
+npm (v9 or higher)
 
-```bash
+Python (v3.10 or higher)
+
+pip (v22 or higher)
+
+Git
+
+PostgreSQL (for production) or SQLite (for development)
+
+Verify Installations
+bash
 node --version
-```
-
-Verify npm:
-
-```bash
 npm --version
-```
-
-Verify Git:
-
-```bash
+python --version
+pip --version
 git --version
-```
-
----
-
-# 📥 Clone the Repository
-
-Clone the repository:
-
-```bash
-git clone <YOUR_REPOSITORY_URL>
-```
-
-Move into the project:
-
-```bash
+Clone the Repository
+bash
+git clone https://github.com/sarthak-agnihotri/signal.git
 cd signal
-```
-
----
-
-# 📦 Frontend Setup
-
-Navigate to the frontend directory:
-
-```bash
+Frontend Setup
+bash
 cd frontend
-```
-
-Install dependencies:
-
-```bash
 npm install
-```
-
-Start the development server:
-
-```bash
 npm run dev
-```
+The frontend will be available at: http://localhost:3000
 
-The frontend should then be available at:
-
-```text
-http://localhost:3000
-```
-
-> Use the port shown by Next.js if your local configuration uses a different port.
-
----
-
-# ⚙️ Backend Setup
-
-Open another terminal and navigate to the backend directory:
-
-```bash
+Backend Setup
+bash
 cd backend
-```
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8001
+The backend API will be available at: http://127.0.0.1:8001
 
-Install the backend dependencies according to the backend's package/dependency manager.
+API Documentation: http://127.0.0.1:8001/docs
 
-Start the backend server using the project's configured development command.
-
-The development API is expected to run at:
-
-```text
-http://127.0.0.1:8001
-```
-
----
-
-# 🔑 Environment Variables
-
-For production-quality configuration, environment-specific values should be stored in environment variables.
-
-Example:
-
-```env
+🔑 Environment Variables
+Frontend (.env.local)
+env
+NEXT_PUBLIC_API_URL=https://signal-xnx9.onrender.com
+NEXT_PUBLIC_WS_URL=wss://signal-xnx9.onrender.com
+For Local Development
+env
 NEXT_PUBLIC_API_URL=http://127.0.0.1:8001
-```
+NEXT_PUBLIC_WS_URL=ws://127.0.0.1:8001
+Backend (.env or Render Environment Variables)
+env
+DATABASE_URL=postgresql://user:password@host:5432/database
+JWT_SECRET=your-secret-key
+JWT_ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+Important: Never commit secrets to GitHub. Add .env and .env.local to .gitignore.
 
-If the backend requires additional configuration, add those variables to the backend environment file.
+▶️ Running the Application
+The application requires both frontend and backend services running simultaneously.
 
-### Important
-
-Do **not** commit secrets such as:
-
-```text
-API keys
-Database passwords
-JWT secrets
-Private keys
-Cloud credentials
-```
-
-to GitHub.
-
-Add environment files to `.gitignore` where appropriate.
-
----
-
-# ▶️ Running the Application
-
-The application requires both frontend and backend services.
-
-### Terminal 1 — Backend
-
-```bash
+Terminal 1 — Backend
+bash
 cd backend
-# backend start command
-```
-
-### Terminal 2 — Frontend
-
-```bash
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+uvicorn app.main:app --reload --port 8001
+Terminal 2 — Frontend
+bash
 cd frontend
-npm install
 npm run dev
-```
+Access the Application
+Open your browser and navigate to:
 
-Then open the frontend in your browser.
-
-```text
+text
 http://localhost:3000
-```
+🧑‍💻 Usage
+Step 1 — Register
+Open the application
+
+Click on "Register" tab
+
+Enter:
+
+Username
+
+Password
+
+Display Name
+
+Click "Create account"
+
+Enter OTP: 123456 (demo)
+
+Step 2 — Login
+Click on "Login" tab
+
+Enter your username and password
+
+Click "Login"
+
+Step 3 — Start a Conversation
+Click "+ New Chat" button
+
+Enter the username of the person you want to chat with
+
+Click "Start Chat"
+
+Step 4 — Send a Message
+Select a conversation from the sidebar
+
+Type your message in the input box
+
+Press Enter or click the send button (➤)
+
+Step 5 — Create a Group
+Click "+ New Group" button
+
+Enter a group name
+
+Enter member usernames separated by commas
+
+Click "Create Group"
+
+Step 6 — Observe Presence
+🟢 Green dot next to a user's name = Online
+
+No dot = Offline
+
+📸 Screenshots
+Login Page
+text
+┌─────────────────────────────────────┐
+│  💬                                 │
+│  Signal                             │
+│  Simple. Private. Connected.        │
+│                                      │
+│  ┌──────────────┐  ┌─────────────┐ │
+│  │    Login     │  │   Register  │ │
+│  └──────────────┘  └─────────────┘ │
+│                                      │
+│  Username                           │
+│  [__________________________]       │
+│                                      │
+│  Password                           │
+│  [__________________________]       │
+│                                      │
+│  [      Login      ]                │
+│                                      │
+│  🔒 Privacy first                   │
+│  Your conversations are protected   │
+└─────────────────────────────────────┘
+Chat Interface
+text
+┌──────────────┬───────────────────────────────────────┐
+│ Signal       │  🔍 Search conversations              │
+│ @testuser7   │                                      │
+│              │  Test User 8                         │
+│              │  Online                              │
+│ 🚪          │                                      │
+│              │  🔐 Messages are simulated encrypted │
+│ Search...    │                                      │
+│              │  ┌──────────────────────────┐       │
+│ Test User 8  │  │ Hello! How are you?      │       │
+│ Online       │  └──────────────────────────┘       │
+│              │                                      │
+│              │  ┌──────────────────────────┐       │
+│              │  │ I'm good, thanks!        │       │
+│              │  └──────────────────────────┘       │
+│              │                                      │
+│              │  [Type a message...]          [➤]   │
+│              │                                      │
+│ + New Chat   │                                      │
+│ + New Group  │                                      │
+└──────────────┴───────────────────────────────────────┘
+🗄️ Database
+The application uses PostgreSQL for production with SQLAlchemy ORM.
+
+Schema Diagram
+text
+┌─────────────┐     ┌─────────────────┐     ┌─────────────┐
+│    Users    │     │  Conversations  │     │   Messages  │
+├─────────────┤     ├─────────────────┤     ├─────────────┤
+│ id          │────▶│ id              │◀────│ id          │
+│ username    │     │ type            │     │ content     │
+│ display_name│     │ name            │     │ sender_id   │
+│ password_hash│    │ avatar_url      │     │ conversation_id│
+│ phone       │     │ created_at      │     │ status      │
+│ is_active   │     │ updated_at      │     │ created_at  │
+│ created_at  │     └─────────────────┘     └─────────────┘
+│ updated_at  │            │
+└─────────────┘            │
+                           │
+                    ┌──────▼───────┐
+                    │ Conversation │
+                    │   Members    │
+                    ├──────────────┤
+                    │ user_id      │
+                    │ conversation_id│
+                    │ role         │
+                    │ joined_at    │
+                    └──────────────┘
+Key Tables
+Table	Description
+users	User accounts and authentication
+conversations	Direct and group conversations
+conversation_members	Users in conversations
+messages	All sent messages
+contacts	User contact lists
+message_reads	Read receipts
+message_reactions	Message reactions
+🔒 Security Considerations
+Implemented Security Measures
+Password Hashing: bcrypt for secure password storage
+
+JWT Authentication: Secure token-based authentication
+
+HTTPS: All production traffic encrypted
+
+CORS: Configured to allow only trusted origins
+
+Input Validation: Request validation on backend
+
+Environment Variables: Secrets stored outside codebase
+
+SQL Injection Prevention: SQLAlchemy ORM with parameterized queries
+
+SSL: Render PostgreSQL requires SSL
+
+Important Security Note
+Although this project is inspired by Signal, it should not be represented as implementing Signal's production-grade end-to-end encryption unless the actual Signal Protocol and associated cryptographic architecture have been correctly implemented and independently reviewed.
+
+❌ Error Handling
+The application gracefully handles common errors:
+
+Error	Handling
+Invalid login credentials	Show "Invalid username or password"
+Registration errors	Show validation errors
+Failed API requests	Show error messages
+Backend unavailable	Show "Unable to connect"
+Network failures	Show "Network error"
+Empty messages	Prevent sending
+Unauthorized requests	Redirect to login
+Invalid conversation IDs	Show "Conversation not found"
+User not found	Show "User does not exist"
+🧠 Real-World Challenges Solved
+1. WebSocket Deployment on Render
+Challenge: WebSocket connections failing with 404
+
+Error Log:
+
+text
+WARNING: No supported WebSocket library detected
+Solution:
+
+txt
+# Added to requirements.txt
+uvicorn[standard]==0.52.2
+websockets==14.1
+wsproto==1.2.0
+2. CORS Configuration
+Challenge: Frontend blocked from accessing backend
+
+Error:
 
----
+text
+Access to fetch at 'https://signal-xnx9.onrender.com/auth/login' 
+from origin 'https://signal-indol-xi.vercel.app' has been blocked 
+by CORS policy
+Solution:
 
-# 🧑‍💻 Usage
+python
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",
+        "https://signal-indol-xi.vercel.app",
+        "https://signal-xnx9.onrender.com",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+3. PostgreSQL Connection
+Challenge: Data resetting on every deploy
 
-Once the application is running:
+Solution:
 
-### Step 1 — Register
+python
+DATABASE_URL = os.getenv("DATABASE_URL")
+if DATABASE_URL:
+    engine = create_engine(DATABASE_URL)
+else:
+    engine = create_engine("sqlite:///./cipherchat.db")
+4. Environment Variables in Vercel
+Challenge: .env.local ignored by Git and Vercel
 
-Create a new user account.
+Solution:
 
-### Step 2 — Login
+Set NEXT_PUBLIC_API_URL and NEXT_PUBLIC_WS_URL in Vercel dashboard
 
-Log in using the registered credentials.
+Environment variables now work in production
 
-### Step 3 — Open Conversations
+5. bcrypt Password Hashing Compatibility
+Challenge: Password hashing failing with newer bcrypt versions
 
-View the available conversations from the conversation sidebar.
+Solution:
 
-### Step 4 — Start Messaging
+python
+# Fixed by using direct bcrypt import
+from passlib.hash import bcrypt
 
-Select a conversation and send a message.
+def hash_password(password: str) -> str:
+    if len(password) > 72:
+        password = password[:72]
+    return bcrypt.hash(password)
+🔮 Future Improvements
+Messaging
+Message reactions (👍, ❤️, etc.)
 
-### Step 5 — Create / Use Groups
+Message editing and deletion
 
-Use the group functionality to communicate with multiple users.
+Reply to specific messages
 
-### Step 6 — Observe Presence
+Forward messages
 
-Users can see whether other members are online or offline.
+Message search
 
----
+Read receipts with timestamps
 
-# 📸 Screenshots
+Typing indicators (UI implemented)
 
-Add screenshots of the completed application here.
+Message delivery status (✓, ✓✓)
 
-Recommended screenshots:
+Media
+Image sharing and preview
 
-### Login / Registration
+Video sharing
 
-```text
-screenshots/login.png
-```
+Document sharing
 
-### Main Chat Interface
+Voice messages
 
-```text
-screenshots/chat.png
-```
+File upload progress bars
 
-### One-to-One Conversation
+Groups
+Group administrators
 
-```text
-screenshots/private-chat.png
-```
+Add/remove members
 
-### Group Conversation
+Leave group
 
-```text
-screenshots/group-chat.png
-```
+Group permissions
 
-### Online Presence
+Group description
 
-```text
-screenshots/online-status.png
-```
+Group settings and avatars
 
-Example Markdown:
+User Experience
+Dark/light theme toggle
 
-```md
-![Login](screenshots/login.png)
+Better responsive mobile UI
 
-![Chat Interface](screenshots/chat.png)
+Push notifications
 
-![Group Chat](screenshots/group-chat.png)
-```
+Better loading states
 
----
+Message pagination
 
-# 🗄️ Database
+Infinite scrolling
 
-The application requires persistent storage for messaging-related data.
+Security
+End-to-end encryption (Signal Protocol)
 
-A typical logical database structure is:
+Refresh token architecture
 
-```text
-Users
- │
- ├── Conversations
- │       │
- │       ├── Conversation Members
- │       │
- │       └── Messages
- │
- └── Groups
-         │
-         └── Group Members
-```
+Rate limiting
 
-## Users
+Secure session management
 
-Stores information about application users.
+Device management
 
-Example fields:
+Infrastructure
+Docker containerization
 
-```text
-user_id
-username
-display_name
-avatar_url
-```
+CI/CD pipeline
 
-## Conversations
+Automated testing
 
-Stores conversation-level information.
+Production logging
 
-Example fields:
+Monitoring and alerts
 
-```text
-conversation_id
-type
-name
-avatar_url
-```
+Horizontal scaling
 
-## Members
+WebSocket load balancing
 
-Associates users with conversations.
-
-Example fields:
-
-```text
-user_id
-conversation_id
-role
-```
-
-## Messages
-
-Stores messages sent within conversations.
-
-Example fields may include:
-
-```text
-message_id
-conversation_id
-sender_id
-content
-created_at
-```
-
----
-
-# 🔒 Security Considerations
-
-Security is an important part of any messaging application.
-
-The project should follow practices such as:
-
-* Never expose passwords in frontend code.
-* Never commit secrets to Git.
-* Validate user input on the backend.
-* Authenticate protected requests.
-* Authorize users before allowing access to private conversations.
-* Validate conversation membership.
-* Sanitize user-controlled content where necessary.
-* Use HTTPS in production.
-* Store sensitive configuration using environment variables.
-
-### Important Security Note
-
-Although this project is inspired by Signal, it should **not** be represented as implementing Signal's production-grade end-to-end encryption unless the actual Signal Protocol and associated cryptographic architecture have been correctly implemented and independently reviewed.
-
----
-
-# ❌ Error Handling
-
-The application should gracefully handle common errors such as:
-
-* Invalid login credentials
-* Invalid registration data
-* Failed API requests
-* Backend unavailable
-* Network failures
-* Empty messages
-* Unauthorized requests
-* Invalid conversation IDs
-* Missing conversation data
-* Failed message delivery
-
-The frontend should provide appropriate feedback rather than allowing errors to break the complete application.
-
----
-
-# 🧪 Testing
-
-Testing should cover the major application workflows.
-
-## Authentication Testing
-
-* Register a new user
-* Attempt registration with invalid information
-* Login with valid credentials
-* Login with invalid credentials
-* Verify authenticated access
-
-## Messaging Testing
-
-* Send a message
-* Receive a message
-* Verify message persistence
-* Verify conversation updates
-* Verify empty message handling
-
-## Group Testing
-
-* Create a group
-* Add members
-* Send group messages
-* Verify member information
-* Verify group conversation loading
-
-## Presence Testing
-
-* Open application with multiple users
-* Verify online status
-* Close/logout a user
-* Verify offline status
-
----
-
-# 🚀 Deployment
-
-The project can be deployed by hosting the frontend and backend separately or through a unified deployment architecture.
-
-A typical production architecture could be:
-
-```text
-                    Internet
-                       │
-                       ▼
-                ┌───────────────┐
-                │   Frontend    │
-                │   Next.js     │
-                └───────┬───────┘
-                        │
-                        ▼
-                ┌───────────────┐
-                │    Backend    │
-                │      API      │
-                └───────┬───────┘
-                        │
-                        ▼
-                ┌───────────────┐
-                │   Database    │
-                └───────────────┘
-```
-
-Possible deployment platforms can be selected based on the backend, database, and hosting requirements.
-
----
-
-# 🔮 Future Improvements
-
-The current application provides the core messaging experience, but several advanced features can be added.
-
-## Messaging
-
-* Message reactions
-* Message editing
-* Message deletion
-* Reply to messages
-* Forward messages
-* Message search
-* Read receipts
-* Typing indicators
-* Message delivery status
-
-## Media
-
-* Image sharing
-* Video sharing
-* Document sharing
-* Voice messages
-* Image previews
-* File upload progress
-
-## Groups
-
-* Group administrators
-* Add/remove members
-* Leave group
-* Group permissions
-* Group description
-* Group settings
-
-## User Experience
-
-* Dark/light theme
-* Better responsive mobile UI
-* Notifications
-* Better loading states
-* Message pagination
-* Infinite scrolling
-
-## Security
-
-* Stronger authentication
-* Refresh-token architecture
-* Rate limiting
-* Secure session management
-* End-to-end encryption using an established protocol
-* Device/session management
-
-## Infrastructure
-
-* Docker support
-* CI/CD pipeline
-* Automated testing
-* Production logging
-* Monitoring
-* Horizontal scaling
-* WebSocket infrastructure optimization
-
----
-
-# 📚 Learning Outcomes
-
+📚 Learning Outcomes
 This project helped demonstrate practical knowledge of:
 
-### Frontend Development
+Frontend Development
+React components and hooks
 
-* React
-* Next.js
-* TypeScript
-* Component-based architecture
-* State management
-* API integration
-* Responsive UI design
+Next.js App Router
 
-### Backend Development
+TypeScript type safety
 
-* REST APIs
-* Authentication
-* Request validation
-* Business logic
-* Database operations
-* Real-time communication
+Tailwind CSS styling
 
-### Full-Stack Development
+State management
 
-* Frontend-backend integration
-* Client-server architecture
-* API design
-* Data flow
-* Error handling
-* Authentication flow
+API integration
 
-### Software Engineering
+Responsive UI design
 
-* Git and GitHub
-* Project organization
-* Environment configuration
-* Debugging
-* Documentation
-* Feature development
+WebSocket client integration
 
----
+Backend Development
+FastAPI framework
 
-# 🧠 Challenges Solved
+REST API design
 
-During development, several practical challenges were addressed.
+JWT authentication
 
-### 1. Real-Time Communication
+WebSocket implementation
 
-Building a messaging interface that updates dynamically requires coordination between the frontend and backend.
+SQLAlchemy ORM
 
-### 2. Conversation State
+Password hashing with bcrypt
 
+Request validation
+
+Database operations
+
+Environment configuration
+
+Full-Stack Development
+Frontend-backend integration
+
+Client-server architecture
+
+API design principles
+
+Data flow management
+
+Error handling
+
+Authentication flow
+
+Real-time communication
+
+Software Engineering
+Git and GitHub
+
+Project organization
+
+Environment configuration
+
+Debugging
+
+Documentation
+
+Feature development
+
+Production deployment
+
+🧠 Challenges Solved
+During development, several practical challenges were addressed:
+
+1. Real-Time Communication
+Building a messaging interface that updates dynamically requires coordination between the frontend and backend via WebSockets.
+
+2. Conversation State
 The application needs to maintain the correct conversation while users switch between different chats.
 
-### 3. Group Members
-
+3. Group Members
 Groups require additional logic for managing multiple users and their roles.
 
-### 4. Online Presence
-
+4. Online Presence
 User presence needs to be reflected dynamically in the interface.
 
-### 5. Frontend and Backend Integration
-
+5. Frontend and Backend Integration
 The frontend and backend must consistently exchange correctly structured data.
 
-### 6. UI State Management
+6. UI State Management
+The application needs to manage multiple states simultaneously:
 
-The application needs to manage multiple states simultaneously, including:
-
-```text
 Current User
+
 Selected Conversation
+
 Messages
+
 Conversations
+
 Members
+
 Online Status
+
 Loading State
+
 Error State
-```
 
----
-
-# 📈 Possible Scalability Improvements
-
+📈 Scalability Improvements
 For a larger production system, the architecture could be extended with:
 
-```text
+text
                  Load Balancer
                        │
           ┌────────────┼────────────┐
@@ -1137,95 +1106,176 @@ For a larger production system, the architecture could be extended with:
                        │
                        ▼
                     Database
-```
-
 A message broker and distributed real-time infrastructure could be introduced when the number of concurrent users increases.
 
 Caching, database indexing, pagination, connection management, and horizontal scaling would also become important.
 
----
+🧪 Testing
+Authentication Testing
+Register a new user
 
-# 🤝 Contributing
+Attempt registration with invalid information
 
-Contributions are welcome.
+Login with valid credentials
 
-### 1. Fork the repository
+Login with invalid credentials
 
-```bash
+Verify authenticated access
+
+Messaging Testing
+Send a message
+
+Receive a message in real time
+
+Verify message persistence
+
+Verify conversation updates
+
+Test empty message handling
+
+Group Testing
+Create a group
+
+Add members
+
+Send group messages
+
+Verify member information
+
+Verify group conversation loading
+
+Presence Testing
+Open application with multiple users
+
+Verify online status
+
+Close/logout a user
+
+Verify offline status
+
+🚀 Deployment
+The project is deployed on Render (backend) and Vercel (frontend).
+
+Backend (Render)
+Push code to GitHub
+
+Create Web Service on Render
+
+Connect to GitHub repository
+
+Add Environment Variables:
+
+DATABASE_URL
+
+JWT_SECRET
+
+Deploy automatically on push
+
+Frontend (Vercel)
+Push code to GitHub
+
+Import project to Vercel
+
+Set root directory to frontend
+
+Add Environment Variables:
+
+NEXT_PUBLIC_API_URL
+
+NEXT_PUBLIC_WS_URL
+
+Auto-deploys on push
+
+Database (Render PostgreSQL)
+Create PostgreSQL database on Render
+
+Get Internal Database URL
+
+Add to backend environment variables
+
+Tables created automatically on startup
+
+Current Live URLs
+Service	URL
+Frontend	https://signal-indol-xi.vercel.app
+Backend API	https://signal-xnx9.onrender.com
+API Documentation	https://signal-xnx9.onrender.com/docs
+🤝 Contributing
+Contributions are welcome!
+
+1. Fork the Repository
+bash
 git fork <repository>
-```
-
-### 2. Clone your fork
-
-```bash
+2. Clone Your Fork
+bash
 git clone <your-fork-url>
-```
-
-### 3. Create a feature branch
-
-```bash
+3. Create a Feature Branch
+bash
 git checkout -b feature/your-feature
-```
-
-### 4. Make your changes
-
+4. Make Your Changes
 Implement and test your feature.
 
-### 5. Commit your changes
-
-```bash
+5. Commit Your Changes
+bash
 git add .
 git commit -m "Add your feature"
-```
-
-### 6. Push the branch
-
-```bash
+6. Push the Branch
+bash
 git push origin feature/your-feature
-```
-
-### 7. Open a Pull Request
-
+7. Open a Pull Request
 Create a Pull Request describing your changes.
 
----
-
-# 📄 License
-
+📄 License
 This project is intended for educational and portfolio purposes.
 
-If a specific open-source license is added to the repository, update this section accordingly.
+MIT License
 
----
+Copyright (c) 2024 Sarthak Agnihotri
 
-# 👨‍💻 Author
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## Sarthak Agnihotri
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-**B.Tech Computer Science & Engineering**
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-Interested in:
+👨‍💻 Author
+Sarthak Agnihotri
+B.Tech Computer Science & Engineering
 
-* Full-Stack Development
-* MERN Stack
-* Backend Development
-* Cloud & DevOps
-* Software Engineering
+Interests
+Full-Stack Development
 
-### GitHub
+MERN Stack
 
-[github.com/sarthak-agnihotri](https://github.com/sarthak-agnihotri)
+Backend Development
 
----
+Cloud & DevOps
 
-# ⭐ Project Summary
+Software Engineering
 
-**Signal** is a full-stack real-time messaging application that demonstrates the development of a modern communication platform using a frontend application, backend API, persistent data storage, authentication, real-time messaging, conversations, groups, and online presence.
+Connect
+Platform	Link
+GitHub	github.com/sarthak-agnihotri
+LinkedIn	linkedin.com/in/sarthak-agnihotri
+Portfolio	sarthakagnihotri.dev
+⭐ Project Summary
+Signal is a full-stack real-time messaging application that demonstrates the development of a modern communication platform using a frontend application, backend API, persistent data storage, authentication, real-time messaging, conversations, groups, and online presence.
 
 The project focuses on practical software engineering principles and provides a foundation that can be extended with advanced messaging, media sharing, notifications, security, testing, and production deployment capabilities.
 
----
+⭐ If you found this project useful
+Consider giving the repository a ⭐ on GitHub!
 
-## ⭐ If you found this project useful
-
-Consider giving the repository a ⭐ on GitHub.
+Built with ❤️ by Sarthak Agnihotri
