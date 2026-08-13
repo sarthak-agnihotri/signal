@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CipherChat WebSocket Test</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+        }
+
+        #messages {
+            border: 1px solid #ddd;
+            padding: 20px;
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            width: 70%;
+        }
+
+        button {
+            padding: 10px 20px;
+        }
+
+        .connected {
+            color: green;
+        }
+
+        .disconnected {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>CipherChat WebSocket</h1>
+
+<p>
+    Status:
+    <strong id="status" class="disconnected">
+        Disconnected
+    </strong>
+</p>
+
+<div id="messages"></div>
+
+<input
+    id="messageInput"
+    placeholder="Type a message..."
+>
+
+<button onclick="sendMessage()">
+    Send Message
+</button>
+
+<button onclick="sendTyping()">
+    Typing
+</button>
+
+<br><br>
+
+<input
+    id="messageIdInput"
+    type="number"
+    placeholder="Enter message ID"
+>
+
+<button onclick="sendDeliveredFromInput()">
+    Delivered ✓✓
+</button>
+
+<button onclick="sendReadFromInput()">
+    Read ✓✓
+</button>
+
+<script>
+
+    const conversationId = 1;
+
+    const protocol =
+        window.location.protocol === "https:"
+            ? "wss:"
+            : "ws:";
+
+    const socket = new WebSocket(
+        `${protocol}//${window.location.host}/ws/${conversationId}`
+    );
+
+
+    // ================================
+    // CONNECTION
+    // ================================
+
+    socket.onopen = function () {
+
+        document.getElementById("status").textContent =
+            "Connected";
+
+        document.getElementById("status").className =
+            "connected";
+
+        addMessage(
+            "🟢 Connected to conversation " + conversationId
+        );
+    };
+
+
+    // ================================
+    // RECEIVE MESSAGE
+    // ================================
+
+    socket.onmessage = function (event) {
+
+        console.log("Received:", event.data);
+
+        const data = JSON.parse(event.data);
+
+        addMessage(
+            JSON.stringify(data, null, 2)
+        );
+    };
+
+
+    // ================================
+    // DISCONNECTED
+    // ================================
+
+    socket.onclose = function () {
+
+        document.getElementById("status").textContent =
+            "Disconnected";
+
+        document.getElementById("status").className =
+            "disconnected";
+
+        addMessage(
+            "🔴 WebSocket disconnected"
+        );
+    };
+
+
+    // ================================
+    // ERROR
+    // ================================
+
+    socket.onerror = function (error) {
+
+        console.error(
+            "WebSocket error:",
+            error
+        );
+
+        addMessage(
+            "❌ WebSocket error"
+        );
+    };
+
+
+    // ================================
+    // SEND MESSAGE
+    // ================================
+
+    function sendMessage() {
+
+        const input =
+            document.getElementById(
+                "messageInput"
+            );
+
+        const content =
+            input.value.trim();
+
+        if (!content) {
+            return;
+        }
+
+        socket.send(
+            JSON.stringify({
+                type: "message",
+
+                user_id: 1,
+
+                content: content
+            })
+        );
+
+        input.value = "";
+    }
+
+
+    // ================================
+    // TYPING
+    // ================================
+
+    function sendTyping() {
+
+        socket.send(
+            JSON.stringify({
+                type: "typing",
+
+                user_id: 1,
+
+                is_typing: true
+            })
+        );
+    }
+
+
+    // ================================
+    // DELIVERED
+    // ================================
+
+    function sendDeliveredFromInput() {
+
+        const input =
+            document.getElementById(
+                "messageIdInput"
+            );
+
+        const messageId =
+            Number(input.value);
+
+        if (!messageId) {
+            alert("Enter a message ID");
+            return;
+        }
+
+        socket.send(
+            JSON.stringify({
+                type: "delivered",
+
+                user_id: 2,
+
+                message_id: messageId
+            })
+        );
+
+        addMessage(
+            `📨 Sent delivered event for message ${messageId}`
+        );
+    }
+
+
+    // ================================
+    // READ
+    // ================================
+
+    function sendReadFromInput() {
+
+        const input =
+            document.getElementById(
+                "messageIdInput"
+            );
+
+        const messageId =
+            Number(input.value);
+
+        if (!messageId) {
+            alert("Enter a message ID");
+            return;
+        }
+
+        socket.send(
+            JSON.stringify({
+                type: "read",
+
+                user_id: 2,
+
+                message_id: messageId
+            })
+        );
+
+        addMessage(
+            `👁️ Sent read event for message ${messageId}`
+        );
+    }
+
+
+    // ================================
+    // DISPLAY
+    // ================================
+
+    function addMessage(message) {
+
+        const container =
+            document.getElementById(
+                "messages"
+            );
+
+        const element =
+            document.createElement(
+                "pre"
+            );
+
+        element.textContent =
+            message;
+
+        container.appendChild(
+            element
+        );
+
+        container.scrollTop =
+            container.scrollHeight;
+    }
+
+</script>
+</body>
+</html>
