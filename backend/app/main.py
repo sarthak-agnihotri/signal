@@ -1,9 +1,10 @@
 from datetime import datetime, timezone
-
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
+# Import database - this now uses DATABASE_URL from environment
 from app.database import Base, engine, SessionLocal
 
 from app.api.auth import router as auth_router
@@ -13,39 +14,54 @@ from app.api.messages import router as messages_router
 
 from app.websocket_manager import manager
 
+# Import all models so they're registered with SQLAlchemy
 from app.models.user import User
 from app.models.contact import Contact
 from app.models.conversation import Conversation, ConversationMember
 from app.models.message import Message
 from app.models.reaction import MessageReaction, MessageRead
 
-
-
-Base.metadata.create_all(bind=engine)
-
-
+# Create FastAPI app FIRST
 app = FastAPI(
     title="CipherChat API",
     description="Privacy-focused real-time messaging platform",
     version="1.0.0"
 )
 
+# Add CORS middleware (allow your frontend URL)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
         "http://127.0.0.1:3000",
+        "https://signal-xnx9.onrender.com",  # Your backend
+        # Add your Vercel frontend URL when deployed
+        # "https://your-app.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# Include routers
 app.include_router(auth_router)
 app.include_router(contacts_router)
 app.include_router(conversations_router)
 app.include_router(messages_router)
 
+# ============================================
+# CREATE TABLES ON STARTUP (with logging)
+# ============================================
+@app.on_event("startup")
+def init_db():
+    print("🔧 Creating database tables...")
+    print(f"📊 Using database: {os.getenv('DATABASE_URL', 'SQLite (local)')[:50]}...")
+    Base.metadata.create_all(bind=engine)
+    print("✅ Database tables ready")
+
+# ============================================
+# ROOT ENDPOINTS
+# ============================================
 @app.get("/")
 def root():
     return {
@@ -53,13 +69,15 @@ def root():
         "status": "ok"
     }
 
-
 @app.get("/health")
 def health():
     return {
         "status": "healthy"
     }
 
+# ============================================
+# WEBSOCKET ENDPOINT
+# ============================================
 @app.websocket("/ws/{conversation_id}")
 async def websocket_endpoint(
     websocket: WebSocket,
