@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8001";
-const WS_URL = process.env.NEXT_PUBLIC_WS_URL || "ws://127.0.0.1:8001";
+const WS_URL = process.env.NEXT_PUBLIC_WS_URL || "wss://signal-xnx9.onrender.com";
 
 type Member = {
   user_id: number;
