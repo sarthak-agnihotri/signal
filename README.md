@@ -1407,7 +1407,7 @@ This project is intended for educational and portfolio purposes.
 MIT License.
 
 ```text
-Copyright (c) 2024 Sarthak Agnihotri
+Copyright (c) 2026 Sarthak Agnihotri
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
