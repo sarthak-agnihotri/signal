@@ -1450,7 +1450,7 @@ SOFTWARE.
 | ------------- | ----------------------------------------- |
 | **GitHub**    | https://github.com/sarthak-agnihotri      |
 | **LinkedIn**  | https://linkedin.com/in/sarthak-agnihotri |
-| **Portfolio** | https://sarthakagnihotri.dev/             |
+| **Portfolio** | https://sarthak-agnihotri-portfolio.vercel.app |
 
 ---
 
